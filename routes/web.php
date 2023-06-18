@@ -32,6 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Segundo esta el metodo que se va a extraer de los controlladores ex: 'index', 'new', etc
 //Tercero en la parte de ->name('<nombre de la ruta>') sera el nombre con el que podremos llamar a las rutas desde las vistas 
 //Se llaman a las rutas desde las vistas asi: {{route('<nombre asignado en estas rutas>')}}
+
 Route::controller(RestauranteController::class)->group(function(){
     Route::get('/restaurantes', 'index');
     Route::post('/restaurante', 'new');
