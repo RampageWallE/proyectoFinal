@@ -4,6 +4,10 @@ use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RestauranteController;
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +68,14 @@ Route::controller(ConsultaController::class)->group(function(){
     Route::get('/consultas/modificar/{id}','showToUpdate')->name('consulta.mostrar.modificar');
     Route::put('/consultas/modificar/{id}', 'update')->name('consulta.actualizar');
 });
+
+Route::get('/admin',[LoginController::class,'showAdminLoginForm'])->name('admin.login-view');
+Route::post('/admin',[LoginController::class,'adminLogin'])->name('admin.login');
+
+Route::get('/admin/register',[RegisterController::class,'showAdminRegisterForm'])->name('admin.register-view');
+Route::post('/admin/register',[RegisterController::class,'createAdmin'])->name('admin.register');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/dashboard',function(){
+    return view('admin');
+})->middleware('auth:admin');

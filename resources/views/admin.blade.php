@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Hello User!
+                    Hello Admin!
                 </div>
             </div>
         </div>
